@@ -5,8 +5,8 @@ abstract class Employee (
     var base_sal : Double
 ){
     open fun giveSalary(): Double {
-        while (exp in 3..5) return base_sal + 200.0
-        while (exp > 5) return base_sal * 1.2 + 500.0
+        if (exp > 2 && exp < 5 ) return base_sal + 200.0
+        if (exp > 5) return base_sal * 1.2 + 500.0
         return base_sal
     }
 }
@@ -22,9 +22,9 @@ class Manager(
         var Dev_Count = Team.filterIsInstance<Developer>().count()
         var Des_Count = Team.filterIsInstance<Designer>().count()
         var TeamCount =  Des_Count + Dev_Count
-        while (TeamCount in 6..10)  return super.giveSalary() + 200.0
-        while (TeamCount > 10) return super.giveSalary() + 300.0
-        while (Dev_Count > TeamCount/2) return super.giveSalary() * 1.1
+        if (TeamCount > 5 && TeamCount < 10)  return super.giveSalary() + 200.0
+        if (TeamCount > 10) return super.giveSalary() + 300.0
+        if (Dev_Count > TeamCount/2) return super.giveSalary() * 1.1
         return super.giveSalary()
     }
 }
@@ -78,7 +78,7 @@ fun main() {
     val des2 = Designer("Aki", "Karlal", 3, 120.0, 0.45)
     val des3 = Designer("Husain", "Karlal", 3, 120.0, 0.6)
     val des4 = Designer("Masoud", "Karlal", 3, 120.0, 0.35)
-    val manager2 = Manager("Wahab", "Sultan", 5, 350.0)
+    val manager2 = Manager("Wahab", "Sultan", 6, 350.0)
     manager2.Team.add(dev5)
     manager2.Team.add(dev6)
     manager2.Team.add(dev7)
@@ -86,7 +86,7 @@ fun main() {
     manager2.Team.add(des3)
     manager2.Team.add(des2)
 
-    //----------------- giveSallary -------------------------//
+    //----------------- giveSallary examples -------------------------//
     val department = Department()
     department.giveSallaryAll()
     println(dev1.firstname + " " + dev1.secondname + " got salary: " + dev1.giveSalary())
