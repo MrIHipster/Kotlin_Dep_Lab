@@ -77,14 +77,14 @@ fun main() {
     val des3 = Designer("Husain", "Karlal", 3, 120.0, 0.6)
     val des4 = Designer("Masoud", "Karlal", 3, 120.0, 0.35)
     val manager2 = Manager("Wahab", "Sultan", 5, 350.0)
-    manager1.Team.add(dev5)
-    manager1.Team.add(dev6)
-    manager1.Team.add(dev7)
+    manager2.Team.add(dev5)
+    manager2.Team.add(dev6)
+    manager2.Team.add(dev7)
     manager2.Team.add(des4)
     manager2.Team.add(des3)
     manager2.Team.add(des2)
 
-    //----------------- giveSallary -------------------------//
+    //----------------- giveSallary examp. -------------------------//
     val department = Department()
     department.giveSallaryAll()
     println(dev1.firstname + " " + dev1.secondname + " got salary: " + dev1.giveSalary())
