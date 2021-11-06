@@ -5,9 +5,9 @@ abstract class Employee (
     var base_sal : Double
 ){
     open fun giveSalary(): Double {
-        if (exp > 2) return base_sal + 200.0
-        if (exp > 5) return base_sal * 1.2 + 500.0
-        else return base_sal
+        while (exp in 3..5) return base_sal + 200.0
+        while (exp > 5) return base_sal * 1.2 + 500.0
+        return base_sal
     }
 }
 
@@ -19,11 +19,13 @@ class Manager(
     var Team: MutableList<Employee> = mutableListOf()
 ): Employee(firstname,secondname, exp, base_sal) {
     override fun giveSalary(): Double {
-        var TeamCount = Team.filterIsInstance<Developer>().count() + Team.filterIsInstance<Designer>().count()
-        if (TeamCount > 5) return super.giveSalary() + 200.0
-        if (TeamCount > 10) return super.giveSalary() + 300.0
-        if (TeamCount/2 < Team.filterIsInstance<Designer>().count()) return super.giveSalary() * 1.1
-        else return super.giveSalary()
+        var Dev_Count = Team.filterIsInstance<Developer>().count()
+        var Des_Count = Team.filterIsInstance<Designer>().count()
+        var TeamCount =  Des_Count + Dev_Count
+        while (TeamCount in 6..10)  return super.giveSalary() + 200.0
+        while (TeamCount > 10) return super.giveSalary() + 300.0
+        while (Dev_Count > TeamCount/2) return super.giveSalary() * 1.1
+        return super.giveSalary()
     }
 }
 
@@ -62,7 +64,7 @@ fun main() {
     val dev3 = Developer("Nikita", "Kolesnikov", 20, 30.0)
     val dev4 = Developer("Artem", "Jirkov", 5, 25.0)
     val des1 = Designer("Mikel", "Andrada", 3, 120.0, 0.7)
-    val manager1 = Manager("Andrii", "Slyvka", 5, 300.0)
+    val manager1 = Manager("Andrii", "Slyvka", 3, 300.0)
     manager1.Team.add(dev1)
     manager1.Team.add(dev2)
     manager1.Team.add(dev3)
@@ -84,7 +86,7 @@ fun main() {
     manager2.Team.add(des3)
     manager2.Team.add(des2)
 
-    //----------------- giveSallary examp. -------------------------//
+    //----------------- giveSallary -------------------------//
     val department = Department()
     department.giveSallaryAll()
     println(dev1.firstname + " " + dev1.secondname + " got salary: " + dev1.giveSalary())
